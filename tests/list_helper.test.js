@@ -25,3 +25,112 @@ describe("total likes", () => {
     expect(result).toBe(listWithOneBlog[0].likes)
   })
 })
+
+describe("favorite blog", () => {
+  const blogList = [
+    {
+      title: "Canonical string reduction",
+      author: "Edsger W. Dijkstra",
+      likes: 3
+    },
+    {
+      title: "Avatar",
+      author: "James Cameron",
+      likes: 2
+    },
+    {
+      title: "Avatar 2",
+      author: "James Cameron",
+      likes: 2
+    },
+    {
+      title: "Avatar 3",
+      author: "James Cameron",
+      likes: 2
+    },
+    {
+      title: "Modern C Programming",
+      author: "K.N. King",
+      likes: 0
+    },
+    {
+      title: "Modern Computer Architecture and Organization",
+      author: "Jim Leden",
+      likes: 12
+    },
+    {
+      title: "A First Course in Graph Theory",
+      author: "Gary Chartrand & Ping Zhang",
+      likes: 6
+    },
+    {
+      title: "Animated Problem Solving",
+      author: "Marco T. Morazan",
+      likes: 12
+    }
+  ]
+  test("gets the most favorite blog out of the lot", () => {
+    const result = listHelper.favoriteBlog(blogList)
+
+    expect(result).toEqual({
+      title: "Modern Computer Architecture and Organization",
+      author: "Jim Leden",
+      likes: 12
+    })
+  })
+
+  describe("most blogs", () => {
+    const blogList = [
+      {
+        title: "Canonical string reduction",
+        author: "Edsger W. Dijkstra",
+        likes: 3
+      },
+      {
+        title: "Animated Problem Solving",
+        author: "Marco T. Morazan",
+        likes: 12
+      },
+      {
+        title: "Avatar",
+        author: "James Cameron",
+        likes: 2
+      },
+
+      {
+        title: "Avatar 3",
+        author: "James Cameron",
+        likes: 2
+      },
+      {
+        title: "Modern C Programming",
+        author: "K.N. King",
+        likes: 0
+      },
+      {
+        title: "Avatar 2",
+        author: "James Cameron",
+        likes: 2
+      },
+      {
+        title: "Modern Computer Architecture and Organization",
+        author: "Jim Leden",
+        likes: 12
+      },
+      {
+        title: "A First Course in Graph Theory",
+        author: "Gary Chartrand & Ping Zhang",
+        likes: 6
+      }
+    ]
+
+    test("author with most blogs", () => {
+      const result = listHelper.mostBlogs(blogList)
+
+      expect(result).toEqual({
+        author: "James Cameron",
+        blogs: 3
+      })
+    })
+  })
+})

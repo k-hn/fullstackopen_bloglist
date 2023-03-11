@@ -133,4 +133,59 @@ describe("favorite blog", () => {
       })
     })
   })
+
+  describe("most likes", () => {
+    const blogList = [
+      {
+        title: "Canonical string reduction",
+        author: "Edsger W. Dijkstra",
+        likes: 3
+      },
+      {
+        title: "Animated Problem Solving",
+        author: "Marco T. Morazan",
+        likes: 50
+      },
+      {
+        title: "Avatar",
+        author: "James Cameron",
+        likes: 2
+      },
+
+      {
+        title: "Avatar 3",
+        author: "James Cameron",
+        likes: 2
+      },
+      {
+        title: "Modern C Programming",
+        author: "K.N. King",
+        likes: 0
+      },
+      {
+        title: "Avatar 2",
+        author: "James Cameron",
+        likes: 2
+      },
+      {
+        title: "Modern Computer Architecture and Organization",
+        author: "Jim Leden",
+        likes: 12
+      },
+      {
+        title: "A First Course in Graph Theory",
+        author: "Gary Chartrand & Ping Zhang",
+        likes: 6
+      }
+    ]
+
+    test("author with the most likes", () => {
+      const result = listHelper.mostLikes(blogList)
+
+      expect(result).toEqual({
+        author: "Marco T. Morazan",
+        likes: 50
+      })
+    })
+  })
 })

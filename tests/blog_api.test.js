@@ -33,3 +33,10 @@ test("all blogs are returned", async () => {
 
   expect(response.body).toHaveLength(helper.initialBlogList.length)
 })
+
+
+test("blogs contain an id field", async () => {
+  const dbBlogs = await helper.blogsInDb()
+
+  expect(dbBlogs[0].id).toBeDefined()
+})

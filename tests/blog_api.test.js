@@ -63,3 +63,22 @@ test("new blogs are created correctly", async () => {
   expect(dbBlogsAfter).toHaveLength(dbBlogsBefore.length + 1)
 
 })
+
+
+test("blog likes field defaults to 0 if missing", async () => {
+  const newBlog = {
+    title: "Reflections of a King",
+    author: "M'uad Dib",
+    url: "http://dune.io",
+  }
+
+  const response = await api
+    .post("/api/blogs")
+    .send(newBlog)
+    .expect(201)
+    .expect("Content-Type", /application\/json/)
+
+  expect(response.body.likes).toEqual(0)
+
+
+})

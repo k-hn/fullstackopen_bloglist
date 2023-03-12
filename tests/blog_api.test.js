@@ -79,6 +79,46 @@ test("blog likes field defaults to 0 if missing", async () => {
     .expect("Content-Type", /application\/json/)
 
   expect(response.body.likes).toEqual(0)
+})
 
 
+test("blogs missing title fail during creation", async () => {
+  const newBlog = {
+    author: "M'uad Dib",
+    url: "http://dune.io",
+    likes: 3
+  }
+
+  await api
+    .post("/api/blogs")
+    .send(newBlog)
+    .expect(400)
+    .expect("Content-Type", /application\/json/)
+})
+
+test("blogs missing url fail during creation", async () => {
+  const newBlog = {
+    title: "Reflections of a King",
+    author: "M'uad Dib",
+    likes: 3
+  }
+
+  await api
+    .post("/api/blogs")
+    .send(newBlog)
+    .expect(400)
+    .expect("Content-Type", /application\/json/)
+})
+
+test("blogs missing title and url fail during creation", async () => {
+  const newBlog = {
+    author: "M'uad Dib",
+    likes: 3
+  }
+
+  await api
+    .post("/api/blogs")
+    .send(newBlog)
+    .expect(400)
+    .expect("Content-Type", /application\/json/)
 })

@@ -40,3 +40,26 @@ test("blogs contain an id field", async () => {
 
   expect(dbBlogs[0].id).toBeDefined()
 })
+
+
+test("new blogs are created correctly", async () => {
+  const dbBlogsBefore = await helper.blogsInDb()
+
+  const newBlog = {
+    title: "Reflections of a King",
+    author: "M'uad Dib",
+    url: "http://dune.io",
+    likes: "24"
+  }
+
+  await api
+    .post("/api/blogs")
+    .send(newBlog)
+    .expect(201)
+    .expect("Content-Type", /application\/json/)
+
+  const dbBlogsAfter = await helper.blogsInDb()
+
+  expect(dbBlogsAfter).toHaveLength(dbBlogsBefore.length + 1)
+
+})

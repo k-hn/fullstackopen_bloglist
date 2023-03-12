@@ -152,4 +152,27 @@ describe("blog deletion", () => {
 })
 
 
+describe("blog update", () => {
+  test("updating existing blog with valid input succeeds", async () => {
+    const { author, url, likes, id } = (await helper.blogsInDb())[0]
+
+    const editedBlog = {
+      title: "New Blog Title",
+      author,
+      url,
+      likes: likes + 5
+    }
+
+    const response = await api
+      .put(`/api/blogs/${id}`)
+      .send(editedBlog)
+      .expect(200)
+      .expect("Content-Type", /application\/json/)
+
+    expect(response.body.title).toEqual("New Blog Title")
+    expect(response.body.likes).toEqual(likes + 5)
+  })
+})
+
+
 
